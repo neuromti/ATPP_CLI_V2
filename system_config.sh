@@ -2,7 +2,7 @@
 PIPELINE=/media/sn/Frieder_Data/Projects/Parcellation_Pipeline/sn_dti
 
 # the number of parallel workers for MATLAB programs, default 7
-POOLSIZE=4
+POOLSIZE=8
 
 # Run probtrackx using GPU or CPU? 0=CPU 1=GPU
 PROBTRACKX_GPU=1

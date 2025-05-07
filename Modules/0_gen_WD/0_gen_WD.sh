@@ -28,7 +28,6 @@ while [[ $# -gt 0 ]]; do
     --waypoint_masks) WAYPOINT_MASKS="$2"; shift ;;
     --exclusion_masks) EXCLUSION_MASKS="$2"; shift ;;
     --stop_masks) STOP_MASKS="$2"; shift ;;
-    --template_space) TEMPLATE_SPACE="$2"; shift ;;
     *) 
       echo "Unknown argument: $1" 
       exit 1
@@ -36,6 +35,7 @@ while [[ $# -gt 0 ]]; do
   esac
   shift
 done
+
 
 # Echo all arguments
 echo "Working Directory: ${WD}"
@@ -46,15 +46,23 @@ echo "Target Directory: ${TARGET_DIR}"
 echo "Waypoint Masks: ${WAYPOINT_MASKS}"
 echo "Exclusion Masks: ${EXCLUSION_MASKS}"
 echo "Stop Masks: ${STOP_MASKS}"
-echo "Template Space: ${TEMPLATE_SPACE}"
 
-# Function to check the masks ROI, Target, Waypoint etc to have the same affine as the template space
-SCRIPT_DIR="$(dirname "$0")"
-CHECK_MASKS_SCRIPT="${SCRIPT_DIR}/check_masks.py"
-check_masks() {
-  local img=$1
-  echo "Running check_masks.py on $img"
-  python -u "$CHECK_MASKS_SCRIPT" "$img" "$TEMPLATE" 
+
+
+# Function to check and unzip if the file is zipped
+unzip() {
+  local file=$1
+  echo $file
+  # If the file is zipped, unzip it
+  if [[ "${file: -7}" == ".nii.gz" ]]; then
+    echo "Unzipping ${file}"
+    gunzip "${file}"
+  elif [[ "${file: -4}" == ".nii" ]]; then
+    :
+  else 
+    echo "ERROR: ROI files don't exist or aren't in the right format (<ROI>.nii.gz or <ROI>.nii)"
+    exit 1
+  fi
 }
 
 copyfiles() {
@@ -76,48 +84,50 @@ copyfiles() {
       fi
 
       cp -vrt "${WD}/$indentifier" "$file"
-      echo "Checking affine of $(basename "$file")"
-      check_masks "${WD}/$indentifier/$(basename "$file")"
+      echo "${WD}/$indentifier/$(basename "$file")"
+      unzip "${WD}/$indentifier/$(basename "$file")"
     done
   else
     echo "No $indentifier directory given: ${file_dir}"
   fi
 }
 
-# copy ROI masks from ROI_DIR and check their affine
+# copy ROI masks from ROI_DIR and unzip them
 copyfiles "${ROI_DIR}" "ROI_masks"
 
-# copy Target masks from ROI_DIR and check their affine
+# copy Target masks from ROI_DIR and unzip them
 copyfiles "${TARGET_DIR}" "Target_masks"
 
-# copy Waypoint masks from WAYPOINT_MASKS and check their affine
+# copy Waypoint masks from WAYPOINT_MASKS and unzip them
 copyfiles "${WAYPOINT_MASKS}" "Waypoint_masks"
 
-# copy Exclusion masks from EXCLUSION_MASKS and check their affine
+# copy Exclusion masks from EXCLUSION_MASKS and unzip them
 copyfiles "${EXCLUSION_MASKS}" "Exclusion_masks"
 
-# copy stop masks from STOP_MASKS and check their affine
+# copy stop masks from STOP_MASKS and unzip them
 copyfiles "${STOP_MASKS}" "Stop_masks"
 
-for sub in $(cat "${SUB_LIST}"); do
+# copy T1 and b0 files from DATA_DIR for each subject
+for sub in `cat "${SUB_LIST}"`; do
+  # Make a folder for each subject
   mkdir -p "${WD}/${sub}"
-
-  ##### Handle b0 file #####
-  b0_file=$(ls "${DATA_DIR}/${sub}/b0_brain.nii"* 2>/dev/null | head -n 1)
-  if [ -z "${b0_file}" ]; then
-    echo "b0 file for subject ${sub} does not exist."
-    echo "Make sure that the T1 is already in diffusion space. Then Module 1 can be skipped."
+  
+  # Check if the b0 file is provided in Nifti Format
+  if [ ! -f "${DATA_DIR}/${sub}/b0_brain."* ]; then
+  echo "b0 file for subject ${sub} does not exist for subject ${sub}"
+  echo "Make sure that the T1 is already in diffusion space. Then Module 1 can be skipped."
   else
-    b0_ext="${b0_file##*.nii}"  # will be "" or ".gz"
-    cp "${b0_file}" "${WD}/${sub}/b0_${sub}.nii${b0_ext}"
+  cp "${DATA_DIR}/${sub}/b0_brain."* "${WD}/${sub}/"
+  unzip "${WD}/${sub}/b0_brain."*
+  mv -v "${WD}/${sub}/b0_brain.nii" "${WD}/${sub}/b0_${sub}.nii"
   fi
 
-  ##### Handle T1 file #####
-  t1_file=$(ls "${DATA_DIR}/${sub}/T1_brain.nii"* 2>/dev/null | head -n 1)
-  if [ -z "${t1_file}" ]; then
-    echo "ERROR: T1 file does not exist or isn't in the right format for subject ${sub}"
+  # Check if the T1 file is provided in Nifti Format
+  if [ ! -f "${DATA_DIR}/${sub}/T1_brain."* ]; then
+  echo "ERROR: T1 files don't exist or isn't in the right format (<T1>.nii.gz or <T1>.nii) for subject ${sub}"
   else
-    t1_ext="${t1_file##*.nii}"  # will be "" or ".gz"
-    cp "${t1_file}" "${WD}/${sub}/T1_${sub}.nii${t1_ext}"
+  cp "${DATA_DIR}/${sub}/T1_brain."* "${WD}/${sub}/"
+  unzip "${WD}/${sub}/T1_brain."*
+  mv -v "${WD}/${sub}/T1_brain.nii" "${WD}/${sub}/T1_${sub}.nii"
   fi
 done

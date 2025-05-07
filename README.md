@@ -16,7 +16,7 @@ To locally build the documentation of this repository, follow the steps below:
 2. clone the public repository branch
 
 ```
-    git clone -b ATPPeX_dev git@github.com:laura-neville/sn_dti.git
+    git clone -b ATTPV2_public git@github.com:laura-neville/sn_dti.git
 ```
 
 3. change directory to doc

@@ -407,7 +407,6 @@ Re-clusters the group matrix and saves the resulting reference image for each cl
 <li><p class="sd-card-text"><strong>METHOD</strong> (<em>str</em>): Clustering method used to generate ROI parcellation.</p></li>
 <li><p class="sd-card-text"><strong>VOX_SIZE</strong> (<em>float</em>): Desired voxel size for group reference images in millimeters (e.g., 2.0 for isotropic 2mm voxels).</p></li>
 <li><p class="sd-card-text"><strong>GROUP_THRES</strong> (<em>float</em>): Threshold for determining group overlap in ROI parcellation, expressed as a fraction of subjects.</p></li>
-<li><p class="sd-card-text"><strong>MATCH_HEMI</strong> (<em>int</em>): Whether to match hemispheres in the group reference image (1 for yes, 0 for no). (Only enable, if you just provide two ROIs which represents the same structure in both hemispheres)</p></li>
 </ul>
 <p class="rubric">Steps Performed</p>
 <ol class="arabic simple">
@@ -431,13 +430,6 @@ Re-clusters the group matrix and saves the resulting reference image for each cl
 <dt><strong>Clustering Matrix Calculation</strong>:</dt><dd><ul class="simple">
 <li><p class="sd-card-text">For each cluster number (2 to <code class="docutils literal notranslate"><span class="pre">MAX_CL_NUM</span></code>), calculates a co-occurrence matrix for the ROI.</p></li>
 <li><p class="sd-card-text">Computes a re-clustered image based on the group matrix and saves the final result.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><strong>Match Hemispheres</strong>:</dt><dd><ul class="simple">
-<li><p class="sd-card-text">If <code class="docutils literal notranslate"><span class="pre">MATCH_HEMI</span></code> is enabled, the script matches the labels of the group parcellation between the hemispheres.</p></li>
 </ul>
 </dd>
 </dl>

@@ -305,7 +305,6 @@ The ATPP consists of several modular components, each with a specific role in th
    - **METHOD** (*str*): Clustering method used to generate ROI parcellation.  
    - **VOX_SIZE** (*float*): Desired voxel size for group reference images in millimeters (e.g., 2.0 for isotropic 2mm voxels).  
    - **GROUP_THRES** (*float*): Threshold for determining group overlap in ROI parcellation, expressed as a fraction of subjects.
-   - **MATCH_HEMI** (*int*): Whether to match hemispheres in the group reference image (1 for yes, 0 for no). (Only enable, if you just provide two ROIs which represents the same structure in both hemispheres)
 
    .. rubric:: Steps Performed
 
@@ -320,8 +319,6 @@ The ATPP consists of several modular components, each with a specific role in th
    3. **Clustering Matrix Calculation**:  
          - For each cluster number (2 to ``MAX_CL_NUM``), calculates a co-occurrence matrix for the ROI.
          - Computes a re-clustered image based on the group matrix and saves the final result.
-   4. **Match Hemispheres**:  
-         - If ``MATCH_HEMI`` is enabled, the script matches the labels of the group parcellation between the hemispheres.
 
    .. rubric:: Output
 

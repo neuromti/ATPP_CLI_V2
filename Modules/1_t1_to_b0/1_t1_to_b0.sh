@@ -1,15 +1,25 @@
 #! /bin/bash
 # T1 registration, from T1 space to DTI space, using spm batch
 
-# Parse input arguments
+PIPELINE=$1
+shift
 WD=$1
 shift
 SUB_LIST=$1
 shift
 POOLSIZE=$1
+shift
+SPM=$1
+shift
+NIFTI=$1
+shift
+TEMPLATE=$1
 
-SCRIPT_DIR="$(dirname "$0")"
-PYTHON_SCRIPT="${SCRIPT_DIR}/t1_to_b0.py"
 
-# Run the ANTsPy registration
-python3 -u "${PYTHON_SCRIPT}" --wd "${WD}"  --sub_list "${SUB_LIST}"
+
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('$(dirname "$0")');addpath('${SPM}');addpath('${NIFTI}');t1_to_b0('${WD}','${SUB_LIST}',${POOLSIZE},'${TEMPLATE}');exit"
+
+for sub in `cat ${SUB_LIST}`
+do
+	mv ${WD}/${sub}/rT1_${sub}.nii ${WD}/${sub}/T1_in_diffusion_space_${sub}.nii
+done
