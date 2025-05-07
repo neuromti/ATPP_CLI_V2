@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+
+<html :class="{'dark': darkMode === 'dark' || (darkMode === 'system' &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches)}" class="scroll-smooth" data-content_root="./" lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }" x-init="$watch('darkMode', val =&gt; localStorage.setItem('darkMode', val))">
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="black" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Modules | ATPPeX 1.0 documentation</title>
+<meta content="Modules | ATPPeX 1.0 documentation" property="og:title"/>
+<meta content="Modules | ATPPeX 1.0 documentation" name="twitter:title"/>
+<link href="_static/pygments.css?v=8d216cef" rel="stylesheet" type="text/css"/>
+<link href="_static/theme.css?v=42baaae4" rel="stylesheet" type="text/css"/>
+<link href="_static/sphinx-design.min.css?v=95c83b7e" rel="stylesheet" type="text/css"/>
+<link href="_static/custom.css?v=036c7737" rel="stylesheet" type="text/css"/>
+<link href="_static/awesome-sphinx-design.css?v=15e0fffa" rel="stylesheet" type="text/css"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="usage.html" rel="next" title="Usage"/>
+<link href="configuration.html" rel="prev" title="&lt;no title&gt;"/>
+<script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+</head>
+<body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false, showScrollTop: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a><header class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="index.html">
+<img alt="Logo" class="mr-2 dark:invert" height="24" src="_static/logo.png" width="24"/><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">ATPPeX 1.0 documentation</span>
+</a></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none"><form @keydown.k.window.meta="$refs.search.focus()" action="search.html" class="relative flex items-center group" id="searchbox" method="get">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs">⌘</span>
+    K
+  </kbd>
+</form>
+</div>
+<nav class="flex items-center space-x-1">
+<button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'" aria-label="Color theme switcher" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
+</button>
+</nav>
+</div>
+</div>
+</header>
+<div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="!justify-start text-sm md:!hidden bg-background" href="index.html">
+<img alt="Logo" class="mr-2 dark:invert" height="16" src="_static/logo.png" width="16"/><span class="font-bold text-clip whitespace-nowrap">ATPPeX 1.0 documentation</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="index.html">
+<span class="hidden md:inline">ATPPeX 1.0 documentation</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Modules</span>
+</nav>
+<div id="content" role="main">
+<section id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h1>
+<p>The ATPP consists of several modular components, each with a specific role in the pipeline.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>0_gen_WD</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This module organizes input files into a predefined directory structure for ATPPeX. The directory structure is as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">Working_dir
+</span><span id="line-2">|-- sub1
+</span><span id="line-3">|   |-- T1_sub1.nii
+</span><span id="line-4">|   `-- b0_sub1.nii
+</span><span id="line-5">|-- ...
+</span><span id="line-6">|-- subN
+</span><span id="line-7">|   |-- T1_subN.nii
+</span><span id="line-8">|   `-- b0_subN.nii
+</span><span id="line-9">|-- ROI_masks
+</span><span id="line-10">|   |-- &lt;ROI&gt;.nii
+</span><span id="line-11">|   `-- ...
+</span><span id="line-12">|-- Stop_masks
+</span><span id="line-13">|   |-- &lt;ROI&gt;_stop.nii
+</span><span id="line-14">|   `-- ...
+</span><span id="line-15">|-- Target_masks
+</span><span id="line-16">|   |-- &lt;ROI&gt;_target.nii
+</span><span id="line-17">|   `-- ...
+</span><span id="line-18">|-- Waypoint_masks
+</span><span id="line-19">|   |-- &lt;ROI&gt;_waypoint.nii
+</span><span id="line-20">|   `-- ...
+</span><span id="line-21">`-- log
+</span></code></pre></div>
+</div>
+<p class="sd-card-text">The script performs several operations:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Creates directories for subjects, ROIs, Target_masks, Stop_masks and Waypoint_masks .</p></li>
+<li><p class="sd-card-text">Copies and unzips ROI files from the respective directory into the working directory.</p></li>
+<li><p class="sd-card-text">For each subject listed in the subject list:
+- Creates a subdirectory.
+- Copies and renames T1 and b0 NIfTI files from the data directory.
+- Ensures files are in the correct format (.nii or .nii.gz).</p></li>
+</ol>
+<p class="rubric">Arguments</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory.</p></li>
+<li><p class="sd-card-text"><strong>DATA_DIR</strong> (<em>str</em>): Path to the data directory containing subject-specific files.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file containing a list of subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>ROI_DIR</strong> (<em>str</em>): Path to the directory containing ROI masks.</p></li>
+<li><p class="sd-card-text"><strong>TARGET_DIR</strong> (<em>str</em>): Path to the directory containing target masks (optional) | Naming: “&lt;ROI&gt;_targets.nii”.</p></li>
+<li><p class="sd-card-text"><strong>WAYPOINT_MASKS</strong> (<em>str</em>): Path to the directory containing waypoint masks (optional) | Naming: “&lt;ROI&gt;_waypoint.nii”.</p></li>
+<li><p class="sd-card-text"><strong>EXCLUSION_MASK_MASKS</strong> (<em>str</em>): Path to the directory containing exclussion masks (optional) | Naming: “&lt;ROI&gt;_exclusion.nii”.</p></li>
+<li><p class="sd-card-text"><strong>STOP_MASKS</strong> (<em>str</em>): Path to the directory containing stop masks (optional) | Naming: “&lt;ROI&gt;_stop.nii”.</p></li>
+</ul>
+<p class="rubric">Error Handling</p>
+<ul class="simple">
+<li><p class="sd-card-text">Exits with an error if ROI, target, waypoint or exclussion files are not in .nii or .nii.gz format.</p></li>
+<li><p class="sd-card-text">Exits with an error if subject-specific b0_brain or T1_brain files are missing or in the wrong format.</p></li>
+<li><p class="sd-card-text">Logs informative messages for each operation.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>1_t1_to_b0</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This Module does the registration of  the subjects T1-weighted images from T1 space to DTI space using an SPM12.</p>
+<p class="sd-card-text">The script performs the following operations:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Registration of the subjects T1-weighted images from T1 space to DTI space using affine transformation from SPM12.</p></li>
+<li><p class="sd-card-text">The T1-weighted images are replaced by the T1-weighted images in DTI space.</p></li>
+</ol>
+<p class="rubric">Arguments</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>PIPELINE</strong> (<em>str</em>): Path to the pipeline script or configuration.</p></li>
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file containing a list of subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>POOLSIZE</strong> (<em>int</em>): Number of parallel processes to use for registration.</p></li>
+<li><p class="sd-card-text"><strong>SPM</strong> (<em>str</em>): Path to the SPM toolbox.</p></li>
+<li><p class="sd-card-text"><strong>NIFTI</strong> (<em>str</em>): Path to the NIFTI toolbox.</p></li>
+<li><p class="sd-card-text"><strong>TEMPLATE</strong> (<em>str</em>): Path to the template file for registration.</p></li>
+</ul>
+<p class="rubric">Error Handling</p>
+<ul class="simple">
+<li><p class="sd-card-text">Ensures all required input arguments are provided.</p></li>
+<li><p class="sd-card-text">Logs errors if files are missing or if MATLAB fails to execute the registration.</p></li>
+</ul>
+<p class="rubric">Output</p>
+<p class="sd-card-text">The T1-MRI scans in the subjects diffusion space named: T1_in_diffusion_scpace_&lt;subject&gt;.nii</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>2_ROI_registration</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This Module estimated a non-linear defomation field from the subjects diffusion space to MNI space.
+The inverse of this deformation field is used to tranform the…</p>
+<ul class="simple">
+<li><p class="sd-card-text">ROI_masks</p></li>
+<li><p class="sd-card-text">Target_masks</p></li>
+<li><p class="sd-card-text">Stop_masks</p></li>
+<li><p class="sd-card-text">Waypoint_masks</p></li>
+</ul>
+<p class="sd-card-text">…to the subjects diffusion space.</p>
+<p class="sd-card-text">The script performs the following operations:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Registration of the subjects T1-weighted images from Diffusion space to standard space (ususally MNI152) using the nonlinear transformation from SPM12.</p></li>
+<li><p class="sd-card-text">The inverse of the deformation field is used to transform the ROI_masks, Target_masks, stop_masks and waypoint_masks from standard space to the subjects diffusion space.</p></li>
+</ol>
+<p class="rubric">Arguments</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>PIPELINE</strong> (<em>str</em>): Path to the pipeline script or configuration.</p></li>
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file containing a list of subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>POOLSIZE</strong> (<em>int</em>): Number of parallel processes to use for registration.</p></li>
+<li><p class="sd-card-text"><strong>SPM</strong> (<em>str</em>): Path to the SPM toolbox.</p></li>
+<li><p class="sd-card-text"><strong>NIFTI</strong> (<em>str</em>): Path to the NIFTI toolbox.</p></li>
+</ul>
+<p class="rubric">Output</p>
+<p class="sd-card-text">A folder for each of the mask types in each subjectfolder containing the registered masks in diffusion space.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>3_ROI_calc_cord</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This modules calculates the coordinates of the voxels in the various used masks in diffusio space.
+Additionally, it calculates the volume of the masks in diffusion space.</p>
+<p class="sd-card-text">The script performs the following operations:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Creates a txt file for each mask (ROI, Target, Stop, Waypoint) in each of the subjects subfolders containing the coordinates of each of the masks in diffusion space.</p></li>
+<li><p class="sd-card-text">Creates a csv file for each type of mask (ROI, Target, Stop, Waypoint) and saves the volumes of the masks in diffusion space.</p></li>
+</ol>
+<p class="rubric">Arguments</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>PIPELINE</strong> (<em>str</em>): Path to the pipeline script or configuration.</p></li>
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file containing a list of subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>POOLSIZE</strong> (<em>int</em>): Number of parallel processes to use for registration.</p></li>
+<li><p class="sd-card-text"><strong>NIFTI</strong> (<em>str</em>): Path to the NIFTI toolbox.</p></li>
+</ul>
+<p class="rubric">Output</p>
+<p class="sd-card-text">CSV files for each mask type (ROI, Target, Stop, Waypoint) in the WD containing the volume of the masks of each subject in diffusion space.
+The coordinates in diffusion spaces of the masks are saved in txt files in the subject folders.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>4_ROI_probtrackx</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This module performs probabilistic tractography using FSL’s probtrackx2.</p>
+<p class="sd-card-text">The script performs the following operations:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Performs probabilistic tractography using FSL’s probtrackx2 using the users specified parameters:</p></li>
+</ol>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-0">
+Waypoint Masks</label><div class="sd-tab-content docutils">
+<div class="line-block">
+<div class="line"><strong>Naming:</strong> “&lt;ROI&gt;_waypoint.nii” (ROI being the ROI_masks that the waypoint masks should be applied to)</div>
+<div class="line"><strong>Function:</strong> The waypoint masks serve as waypoints for the streamlines. Streamlines that do not pass through the waypoint masks will be deleted.</div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-1">
+Stop Masks</label><div class="sd-tab-content docutils">
+<div class="line-block">
+<div class="line"><strong>Naming:</strong> “&lt;ROI&gt;_stop.nii” (ROI being the ROI_masks that the stop masks should be applied to)</div>
+<div class="line"><strong>Function:</strong> The stop masks serve as define areas that stop the streamlines.</div>
+</div>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-2">
+Exclusion Masks</label><div class="sd-tab-content docutils">
+<div class="line-block">
+<div class="line"><strong>Naming:</strong> “&lt;ROI&gt;_exclusion.nii” (ROI being the ROI_masks that the exclusion masks should be applied to)</div>
+<div class="line"><strong>Function:</strong> The exclusion masks serve as areas that the streamlines are not allowed to pass through. Any streamlines that hit the exclusion masks will be deleted.</div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio"/>
+<label class="sd-tab-label" for="sd-tab-item-3">
+Target Masks</label><div class="sd-tab-content docutils">
+<div class="line-block">
+<div class="line"><strong>Naming:</strong> “&lt;ROI&gt;_target.nii” (ROI being the ROI_masks that the target masks should be applied to)</div>
+<div class="line"><strong>Function:</strong> The target masks serve as the target regions for the streamlines. The number of streamlines that reach the target masks is estimated. All other streamlines will not be considered.</div>
+</div>
+</div>
+</div>
+<p class="rubric">Arguments</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory.</p></li>
+<li><p class="sd-card-text"><strong>DATA_DIR</strong> (<em>str</em>): Path to the data directory containing subject-specific files.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file containing a list of subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>N_SAMPLES</strong> (<em>int</em>): Number of streamlines to estimated in probabilistic tractography.</p></li>
+<li><p class="sd-card-text"><strong>DIS_COR</strong> (<em>float</em>): Use distance correction?</p></li>
+<li><p class="sd-card-text"><strong>LEN_STEP</strong> (<em>float</em>): Length of each step in mm.</p></li>
+<li><p class="sd-card-text"><strong>N_STEPS</strong> (<em>int</em>): Maximum number of steps for each streamline.</p></li>
+<li><p class="sd-card-text"><strong>CUR_THRES</strong> (<em>float</em>): Curvature threshold.</p></li>
+<li><p class="sd-card-text"><strong>SAMPVOX</strong> (<em>str</em>): Sample around the voxel in a radius of this size? (None for no sampling).</p></li>
+<li><p class="sd-card-text"><strong>PROBTRACKX_GPU</strong> (<em>bool</em>): Whether to use GPU acceleration for probtrackx2.</p></li>
+<li><p class="sd-card-text"><strong>STOP_MASK</strong> (<em>str</em>): Use the stop mask?</p></li>
+<li><p class="sd-card-text"><strong>WAYPOINT_MASKS</strong> (<em>list</em>): Use the waypoint masks?</p></li>
+<li><p class="sd-card-text"><strong>EXCLUSION_MASKS</strong> (<em>str</em>): Use the exclusion mask?</p></li>
+<li><p class="sd-card-text"><strong>TARGET_MASKS</strong> (<em>str</em>): Use the target mask?</p></li>
+</ul>
+<p class="rubric">Output</p>
+<p class="sd-card-text">The output of the probtrackx2 is saved in each of the subjects subfolders.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>5_ROI_calc_matrix</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This module calculates the connectivity matrix (between the voxels in the seed region and the rest of the brain) for each subject.</p>
+<p class="sd-card-text">The script performs the following operations:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Creates a folder named ‘&lt;ROI&gt;_matrix’ in each of the subjects subfolders containing the connectivity matrix.</p></li>
+</ol>
+<p class="rubric">Arguments</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>PIPELINE</strong> (<em>str</em>): Path to the pipeline script or configuration.</p></li>
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file containing a list of subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>POOLSIZE</strong> (<em>int</em>): Number of parallel processes to use for registration.</p></li>
+<li><p class="sd-card-text"><strong>NIFTI</strong> (<em>str</em>): Path to the NIFTI toolbox.</p></li>
+</ul>
+<p class="rubric">Output</p>
+<p class="sd-card-text">A folder named ‘&lt;ROI&gt;_matrix’ is created in each of the subjects subfolders containing the connectivity matrix.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>6_ROI_parcellation</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This module perform clustering of the voxels in the seed region based on the correlation of their whole-brain connectivity profiles. (For now only spectral clustering is implemented)</p>
+<p class="sd-card-text">The function performs the following operations:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Reads a list of subjects from a provided file.</p></li>
+<li><p class="sd-card-text">Iterates over the ROIs of each subject and loads the corresponding data, including voxel coordinates and a connectivity matrix.</p></li>
+<li><p class="sd-card-text">Filters and prepares the connectivity matrix for clustering.</p></li>
+<li><p class="sd-card-text">Computes the pairwise correlation between voxels (and saves the correlation matrix).</p></li>
+<li><p class="sd-card-text">Applies the selected clustering method to divide the ROI into multiple clusters, with the number of clusters ranging from 2 to a maximum specified by <code class="docutils literal notranslate"><span class="pre">MAX_CL_NUM</span></code>.</p></li>
+<li><p class="sd-card-text">Generates and saves parcellation maps for each ROI, with clusters encoded as distinct values.</p></li>
+</ol>
+<p class="rubric">Arguments</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>PIPELINE</strong> (<em>str</em>): Path to the pipeline script or configuration.</p></li>
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory containing subject data.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file with a list of subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>MAX_CL_NUM</strong> (<em>int</em>): Maximum number of clusters per ROI. Clustering will create maps with cluster numbers ranging from 2 to <code class="docutils literal notranslate"><span class="pre">MAX_CL_NUM</span></code>.</p></li>
+<li><p class="sd-card-text"><strong>NIFTI</strong> (<em>str</em>): Path to the NIFTI toolbox.</p></li>
+<li><p class="sd-card-text"><strong>METHOD</strong> (<em>str</em>): Clustering method to use. Supported options:</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">sc</span></code> (spectral clustering)</p></li>
+</ul>
+<p class="rubric">Error Handling</p>
+<ul class="simple">
+<li><p class="sd-card-text">Checks if required files (<code class="docutils literal notranslate"><span class="pre">connection_matrix.mat</span></code>) are available for each ROI.</p></li>
+<li><p class="sd-card-text">Ensures that a valid clustering method is selected; otherwise, an error is raised.</p></li>
+</ul>
+<p class="rubric">Output</p>
+<ul class="simple">
+<li><p class="sd-card-text">For each subject and ROI, the function produces parcellated NIfTI files named <code class="docutils literal notranslate"><span class="pre">&lt;ROI_name&gt;&lt;k&gt;.nii</span></code>.</p></li>
+<li><p class="sd-card-text">Files are stored in a subdirectory named <code class="docutils literal notranslate"><span class="pre">&lt;ROI_name&gt;_&lt;METHOD&gt;</span></code> within the subject’s directory.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>7_ROI_to_template</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This module transforms Regions of Interest (ROIs) from <strong>Diffusion</strong> space to <strong>Template</strong> space using SPM’s spatial normalization.
+The deformation field from Module 2 <strong>ROI_registration</strong> is used for the tranformation.</p>
+<p class="sd-card-text">The function performs the following operations:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Reads a list of ROIs from the working directory.</p></li>
+<li><p class="sd-card-text">Iterates through the provided subjects and applies the previously calculated transformation (Module 2_ROI_registration) to the ROI parcellations to move them from Diffusion space to Template space.</p></li>
+<li><p class="sd-card-text">Saves the normalized parcellation maps with a prefix <code class="docutils literal notranslate"><span class="pre">w</span></code> to indicate the transformation into MNI space.</p></li>
+<li><p class="sd-card-text">Renames the normalized files and moves them to a subdirectory of the clusters directory.</p></li>
+</ol>
+<p class="rubric">Arguments</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory containing subject data and ROI files.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file with a list of subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>MAX_CL_NUM</strong> (<em>int</em>): Maximum number of clusters per ROI. The function will normalize maps for cluster numbers ranging from 2 to <code class="docutils literal notranslate"><span class="pre">MAX_CL_NUM</span></code>.</p></li>
+<li><p class="sd-card-text"><strong>POOLSIZE</strong> (<em>int</em>): Number of parallel processes (not used explicitly in the current function).</p></li>
+<li><p class="sd-card-text"><strong>TEMPLATE</strong> (<em>str</em>): Path to the MNI template file for normalization.</p></li>
+<li><p class="sd-card-text"><strong>VOX_SIZE</strong> (<em>float</em>): Desired voxel size for the normalized ROIs in millimeters (e.g., 2.0 for isotropic 2mm voxels).</p></li>
+<li><p class="sd-card-text"><strong>METHOD</strong> (<em>str</em>): Clustering method used to generate ROI parcellation. Required for locating parcellated ROI files.</p></li>
+</ul>
+<p class="rubric">Error Handling</p>
+<ul class="simple">
+<li><p class="sd-card-text">Ensures that necessary files (e.g., deformation fields and ROI files) are available for each subject before proceeding.</p></li>
+<li><p class="sd-card-text">Skips normalization for subjects or ROIs that have already been processed.</p></li>
+</ul>
+<p class="rubric">Output</p>
+<ul class="simple">
+<li><p class="sd-card-text">Normalized NIfTI files for each ROI and cluster count, saved in a subfolder of the clusters directory.</p></li>
+<li><p class="sd-card-text">File names follow the format: <code class="docutils literal notranslate"><span class="pre">&lt;vox_size&gt;/&lt;vox_size&gt;&lt;ROI_name&gt;&lt;k&gt;&lt;Template&gt;.nii</span></code>, where <code class="docutils literal notranslate"><span class="pre">k</span></code> is the cluster count.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>8_group_refer</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This module aggregates the individual ROI parcellations in MNI space for all subjects and generates an average group parcellation image.</p>
+<p class="sd-card-text">The function performs the following operations:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text"><strong>Group Reference Image Creation</strong>:
+Aggregates individual ROI parcellations in MNI space for all subjects, applies a group threshold, and generates a binary reference image indicating the common ROI region across subjects.</p></li>
+<li><p class="sd-card-text"><strong>Clustering Matrix Calculation</strong>:
+For each cluster number (up to a maximum), calculates a group co-occurrence matrix across subjects.</p></li>
+<li><p class="sd-card-text"><strong>Indexing and Image Saving</strong>:
+Re-clusters the group matrix and saves the resulting reference image for each cluster count.</p></li>
+</ol>
+<p class="rubric">Arguments</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory containing subject data and ROI files.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file with a list of subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>MAX_CL_NUM</strong> (<em>int</em>): Maximum number of clusters to calculate for the group reference.</p></li>
+<li><p class="sd-card-text"><strong>NIFTI</strong> (<em>str</em>): Path to the NIfTI library required for processing.</p></li>
+<li><p class="sd-card-text"><strong>METHOD</strong> (<em>str</em>): Clustering method used to generate ROI parcellation.</p></li>
+<li><p class="sd-card-text"><strong>VOX_SIZE</strong> (<em>float</em>): Desired voxel size for group reference images in millimeters (e.g., 2.0 for isotropic 2mm voxels).</p></li>
+<li><p class="sd-card-text"><strong>GROUP_THRES</strong> (<em>float</em>): Threshold for determining group overlap in ROI parcellation, expressed as a fraction of subjects.</p></li>
+<li><p class="sd-card-text"><strong>MATCH_HEMI</strong> (<em>int</em>): Whether to match hemispheres in the group reference image (1 for yes, 0 for no). (Only enable, if you just provide two ROIs which represents the same structure in both hemispheres)</p></li>
+</ul>
+<p class="rubric">Steps Performed</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt><strong>ROI Iteration</strong>:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">Iterates through all ROI masks in the <code class="docutils literal notranslate"><span class="pre">ROI_masks</span></code> subdirectory of the working directory.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Group Reference Image Generation</strong>:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">Loads ROI parcellations for each subject.</p></li>
+<li><p class="sd-card-text">Binarizes the ROI data, aggregates across subjects, and applies the group threshold.</p></li>
+<li><p class="sd-card-text">Saves the resulting group reference image in the appropriate subdirectory.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Clustering Matrix Calculation</strong>:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">For each cluster number (2 to <code class="docutils literal notranslate"><span class="pre">MAX_CL_NUM</span></code>), calculates a co-occurrence matrix for the ROI.</p></li>
+<li><p class="sd-card-text">Computes a re-clustered image based on the group matrix and saves the final result.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Match Hemispheres</strong>:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">If <code class="docutils literal notranslate"><span class="pre">MATCH_HEMI</span></code> is enabled, the script matches the labels of the group parcellation between the hemispheres.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<p class="rubric">Output</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Group Reference Image</strong>:</dt><dd><p class="sd-card-text">The final group reference image is saved with the name:
+<code class="docutils literal notranslate"><span class="pre">group_&lt;num_subjects&gt;_&lt;vox_size&gt;mm/&lt;ROI&gt;_roimask_thr&lt;group_threshold&gt;%.nii.gz</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Cluster-Specific Reference Images</strong>:</dt><dd><p class="sd-card-text">For each cluster count from 2 to <code class="docutils literal notranslate"><span class="pre">MAX_CL_NUM</span></code>, the resulting reference images are saved with the name:
+<code class="docutils literal notranslate"><span class="pre">&lt;vox_size&gt;mm_&lt;ROI&gt;_&lt;cluster_num&gt;_&lt;group_threshold&gt;%_group.nii.gz</span></code></p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>9_cluster_relabel</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Relabels the subject specific clustering solutions to mach the group_refference parcellation.</p>
+<p class="rubric">Steps Performed</p>
+<ol class="arabic">
+<li><dl class="simple">
+<dt><strong>Iteration Through ROI Masks</strong>:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">The script loops through all ROI masks in the <code class="docutils literal notranslate"><span class="pre">ROI_masks</span></code> subdirectory of the working directory.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="sd-card-text"><strong>Cluster Relabeling</strong>:
+- For each cluster number (from 2 to <code class="docutils literal notranslate"><span class="pre">MAX_CL_NUM</span></code>), the module:
+- Loads the group reference image for the cluster number.
+- Matches clusters in each subject’s image to the group reference using the Hungarian algorithm.
+- Relabels clusters in the subject’s image to align with the group image.</p></li>
+<li><p class="sd-card-text"><strong>Saving Relabeled Images</strong>:
+- The relabeled images for each subject are saved in the corresponding directory with the following naming convention:</p>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">&lt;vox_size&gt;mm_&lt;ROI&gt;_&lt;cluster_num&gt;_Template_relabel_group.nii.gz</span></code></p>
+</li>
+</ol>
+<p class="rubric">Arguments</p>
+<p class="sd-card-text">The script accepts the following arguments from the command line:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory containing subject data and ROI files.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file listing subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>MAX_CL_NUM</strong> (<em>int</em>): Maximum number of clusters.</p></li>
+<li><p class="sd-card-text"><strong>NIFTI</strong> (<em>str</em>): Path to the NIfTI library required for processing.</p></li>
+<li><p class="sd-card-text"><strong>GROUP_THRES</strong> (<em>float</em>): Threshold for determining group overlap in ROI parcellation, expressed as a fraction of subjects.</p></li>
+<li><p class="sd-card-text"><strong>METHOD</strong> (<em>str</em>): Clustering method used to generate ROI parcellations.</p></li>
+<li><p class="sd-card-text"><strong>VOX_SIZE</strong> (<em>float</em>): Desired voxel size for output images, in millimeters (e.g., 2.0 for isotropic 2mm voxels).</p></li>
+</ul>
+<p class="rubric">Outputs</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>Relabeled Images</strong>:</p></li>
+</ul>
+<p class="sd-card-text">The final relabeled images for each subject and cluster count are saved in the subject’s directory.</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>Naming Convention</strong>:</p></li>
+</ul>
+<p class="sd-card-text">The output files follow this naming pattern:
+<code class="docutils literal notranslate"><span class="pre">&lt;vox_size&gt;mm_&lt;ROI&gt;_&lt;cluster_num&gt;_Template_relabel_group.nii.gz</span></code></p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>10_calc_mpm</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Calculates a maximum probability map (MPM) for each of the clusters of each ROI representing the probabilty of each voxel belonging to the cluster.</p>
+<p class="rubric">Steps Performed</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt><strong>Iteration Through ROI Masks</strong>:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">The script loops through all ROI masks in the <code class="docutils literal notranslate"><span class="pre">ROI_masks</span></code> subdirectory of the working directory.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Probabilistic Maps Calculation</strong>:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">For each cluster number (from 2 to <code class="docutils literal notranslate"><span class="pre">MAX_CL_NUM</span></code>), the MATLAB function:</p></li>
+<li><p class="sd-card-text">Loads the corresponding relabeled subject-specific clustering images.</p></li>
+<li><p class="sd-card-text">Calculates probabilistic maps for each cluster across all subjects.</p></li>
+<li><p class="sd-card-text">Applies a threshold to exclude low-confidence regions.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Saving Results</strong>:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">The probabilistic maps are saved in the output directory with the following naming conventions:</p></li>
+<li><p class="sd-card-text">Probabilistic maps: <code class="docutils literal notranslate"><span class="pre">&lt;vox_size&gt;mm_&lt;ROI&gt;_&lt;cluster_num&gt;_&lt;subregion&gt;.nii.gz</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<p class="rubric">Arguments</p>
+<p class="sd-card-text">The Bash script accepts the following arguments:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory containing subject data and ROI files.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file listing subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>MAX_CL_NUM</strong> (<em>int</em>): Maximum number of clusters.</p></li>
+<li><p class="sd-card-text"><strong>NIFTI</strong> (<em>str</em>): Path to the NIfTI library required for processing.</p></li>
+<li><p class="sd-card-text"><strong>METHOD</strong> (<em>str</em>): Clustering method used to generate ROI parcellations.</p></li>
+<li><p class="sd-card-text"><strong>MPM_THRES</strong> (<em>float</em>): Threshold for determining confidence in MPM generation, expressed as a fraction of subjects.</p></li>
+<li><p class="sd-card-text"><strong>VOX_SIZE</strong> (<em>float</em>): Desired voxel size for output images, in millimeters (e.g., 2.0 for isotropic 2mm voxels).</p></li>
+</ul>
+<p class="rubric">Outputs</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>Probabilistic Maps</strong>:</p></li>
+<li><dl class="simple">
+<dt>The script generates probabilistic maps for each cluster within an ROI, saved with the naming pattern:</dt><dd><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">&lt;vox_size&gt;mm_&lt;ROI&gt;_&lt;cluster_num&gt;_&lt;subregion&gt;.nii.gz</span></code></p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>11_postprocess_mpm</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Smooths the Maximum Probability Maps (MPMs) by applying a majority vote within the neighborhood of each voxel.</p>
+<p class="rubric">Steps Performed</p>
+<ol class="arabic">
+<li><dl class="simple">
+<dt><strong>Iteration Through ROI Masks</strong>:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">The script loops through all ROI masks in the <code class="docutils literal notranslate"><span class="pre">ROI_masks</span></code> subdirectory of the working directory.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Neighborhood-Based Smoothing</strong>:</dt><dd><ul class="simple">
+<li><p class="sd-card-text">For each cluster number (from 2 to <code class="docutils literal notranslate"><span class="pre">MAX_CL_NUM</span></code>):</p></li>
+<li><p class="sd-card-text">Loads the MPM image for the cluster number.</p></li>
+<li><p class="sd-card-text">For each non-zero voxel, collects the labels of its six immediate neighbors.</p></li>
+<li><p class="sd-card-text">Applies a majority voting scheme to reassign the voxel’s label based on the most frequent label among its neighbors.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="sd-card-text"><strong>Saving Smoothed MPM</strong>:
+- The smoothed MPM for each cluster is saved with the following naming convention:</p>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">&lt;vox_size&gt;mm_&lt;ROI&gt;_&lt;cluster_num&gt;_MPM_thr&lt;MPM_THRES&gt;_group_smoothed.nii.gz</span></code></p>
+</li>
+</ol>
+<p class="rubric">Arguments</p>
+<p class="sd-card-text"><strong>Inputs from Command Line</strong>:</p>
+<p class="sd-card-text">The Bash script accepts the following arguments:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>WD</strong> (<em>str</em>): Path to the working directory containing subject data and ROI files.</p></li>
+<li><p class="sd-card-text"><strong>SUB_LIST</strong> (<em>str</em>): Path to a file listing subject identifiers (one per line).</p></li>
+<li><p class="sd-card-text"><strong>MAX_CL_NUM</strong> (<em>int</em>): Maximum number of clusters.</p></li>
+<li><p class="sd-card-text"><strong>NIFTI</strong> (<em>str</em>): Path to the NIfTI library required for processing.</p></li>
+<li><p class="sd-card-text"><strong>MPM_THRES</strong> (<em>float</em>): Threshold for determining confidence in MPM generation, expressed as a fraction of subjects.</p></li>
+<li><p class="sd-card-text"><strong>VOX_SIZE</strong> (<em>float</em>): Desired voxel size for output images, in millimeters (e.g., 2.0 for isotropic 2mm voxels).</p></li>
+</ul>
+<p class="rubric">Outputs</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>Smoothed MPMs</strong>:</p></li>
+<li><dl class="simple">
+<dt>The smoothed MPMs for each cluster are saved with the naming convention:</dt><dd><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">&lt;vox_size&gt;mm_&lt;ROI&gt;_&lt;cluster_num&gt;_MPM_thr&lt;MPM_THRES&gt;_group_smoothed.nii.gz</span></code></p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>12_validation</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Calculates various metrics to validate the clustering solutions and helps to make an informed decision for the amount of clusters in the ROI.</p>
+<p class="rubric">Validation indices:</p>
+<p class="sd-card-text">1. <strong>Split-Half Sampling:</strong>
+- Randomly splits the subjects into two groups and calculates the similarity between the clustering solutions.
+Calculated scores:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p class="sd-card-text">Dice coefficient</p></li>
+<li><p class="sd-card-text">Cramer’s V</p></li>
+<li><p class="sd-card-text">Normalized Mutual Information (NMI)</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt><strong>Topological distance:</strong></dt><dd><ul class="simple">
+<li><p class="sd-card-text">Calculates the topological distance between any combination of two ROIs clustering solutions.</p></li>
+<li><p class="sd-card-text">This is usefull, if the ROIs is present in both hemisspheres and similar parcellations are expected.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>13_indices_plot</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Generates plots of the validation metrics.</p>
+<p class="rubric">Resulting Plots:</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt><strong>Split-Half Sampling:</strong></dt><dd><ul class="simple">
+<li><p class="sd-card-text">Line Plots of the Dice coefficient, Cramer’s V, and Normalized Mutual Information (NMI).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Topological Distance:</strong></dt><dd><ul class="simple">
+<li><p class="sd-card-text">Topological distance plot.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><strong>14_shap_exp</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-right" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Calculates the differentiating features of the clusters.</p>
+</div>
+</details><p>Refer to individual scripts in the <cite>Modules</cite> directory for detailed descriptions and usage.</p>
+</section>
+</div></div>
+</main>
+</div>
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2024, Farzin Negahbani, Laura Neville, Frieder Wizgall Built with <a class="font-medium underline underline-offset-4" href="https://www.sphinx-doc.org" rel="noreferrer">Sphinx 8.1.3</a></p>
+</div>
+</div>
+</footer>
+</div>
+<script src="_static/documentation_options.js?v=f2a433a1"></script>
+<script src="_static/doctools.js?v=9bcbadda"></script>
+<script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+<script defer="defer" src="_static/theme.js?v=073f68d9"></script>
+<script src="_static/design-tabs.js?v=f930bc37"></script>
+</body>
+</html>
