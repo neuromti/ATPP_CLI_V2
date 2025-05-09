@@ -1,5 +1,5 @@
 # pipeline directory
-PIPELINE=/media/sn/Frieder_Data/Projects/Parcellation_Pipeline/sn_dti
+PIPELINE=/media/sn/Frieder_Data/Projects/Parcellation_Pipeline/ATPP_CLI_V2
 
 # the number of parallel workers for MATLAB programs, default 7
 POOLSIZE=8

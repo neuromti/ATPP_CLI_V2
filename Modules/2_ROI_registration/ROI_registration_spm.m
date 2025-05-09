@@ -77,6 +77,9 @@ function spm_norm_e(WD,SUB,i, SPM)
     fprintf('Normalizing T1 Native to MNI. T1 is: %s ',sourcepath);
 
 	sourceimg = strcat(sourcepath,'/T1_in_diffusion_space_',SUB{i},'.nii');
+	if ~exist(sourceimg, 'file')
+		sourceimg = strcat(sourcepath,'/T1_',SUB{i},'.nii');
+	end
 	
 	spm('defaults','FMRI');
 	spm_jobman('initcfg');
@@ -108,8 +111,13 @@ function spm_util_deform(WD,SUB,i,ROI, outputfolder)
 	disp(sprintf('Warping masks from MNI to native %s ',sourcepath))
 
    	refimg = strcat(sourcepath,'/T1_in_diffusion_space_',SUB{i},'.nii');
+	if ~exist(refimg, 'file')
+		refimg = strcat(sourcepath,'/T1_',SUB{i},'.nii');
+	end
 	defimg = strcat(sourcepath,'/y_T1_in_diffusion_space_',SUB{i},'.nii');
-
+	if ~exist(defimg, 'file')
+		defimg = strcat(sourcepath,'/y_T1_',SUB{i},'.nii');
+	end
 	spm('defaults','FMRI');
 	spm_jobman('initcfg');
 	

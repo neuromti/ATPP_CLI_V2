@@ -31,6 +31,10 @@ for i = 1:length(SUB)
         coordinates = data.xyz;
         matrix = data.matrix;
 
+        panduan = any(matrix');
+	    coordinates = coordinates(panduan,:);
+	    matrix = matrix(panduan,:);
+
         % Load the ROI image file
         nii = load_untouch_nii(fullfile(WD, SUB{i}, 'ROI_masks', roi_list(j).name));
         image_f = nii.img;

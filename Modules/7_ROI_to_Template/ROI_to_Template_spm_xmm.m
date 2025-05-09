@@ -31,7 +31,17 @@ function spm_norm_ew(WD,SUB,i,ROI,MAX_CL_NUM,METHOD,VOX_SIZE)
 	sourcepath=strcat(WD,'/',SUB{i});
 
 	% Path to the deformation field
-	def = fullfile(sourcepath,['DTI_to_MNI_deformation_field_', SUB{i},'.nii']);
+	def1 = fullfile(sourcepath, ['DTI_to_MNI_deformation_field_', SUB{i}, '.nii']);
+	def2 = fullfile(sourcepath, ['y_T1_', SUB{i}, '.nii']);
+	
+	if exist(def1, 'file')
+		def = def1;
+	elseif exist(def2, 'file')
+		def = def2;
+	else
+		error('No deformation field found for subject %s', SUB{i});
+	end
+
 
 	for N=2:MAX_CL_NUM
 		resampleimg{N}=strcat(sourcepath,'/',SUB{i},'_',ROI,'_',METHOD,'/',SUB{i},'_',ROI,num2str(N),'.nii');

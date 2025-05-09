@@ -17,7 +17,7 @@ function index=sc3(k, W)
     [idx,tmp]=find(diag(d));
     starting=idx(1);
     U=U(:,starting:starting+k-1);
-
+    
     % row-wise normalization
     U=bsxfun(@rdivide, U, sqrt(sum(U.^2,2)));
 

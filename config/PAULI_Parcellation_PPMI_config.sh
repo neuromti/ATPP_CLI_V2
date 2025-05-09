@@ -1,15 +1,15 @@
 # switches for each step,
 # a step will NOT run if its number is NOT in the following array
-SWITCH=(12 13)
+SWITCH=(6 7 8 9)
 
 # Data Directory
-DATA_DIR=/media/sn/backup/Clean_Pipeline_V2/data/raw_data
+DATA_DIR=/media/sn/Frieder_Data/Projects/White_Matter_Alterations/SN/data/PPMI/PD_Baseline
 
 # List of Subject_IDs
-SUB_LIST=/media/sn/backup/Clean_Pipeline_V2/data/Test_subjects.txt
+SUB_LIST=/media/sn/Frieder_Data/Projects/White_Matter_Alterations/SN/data/SubjectListFrieder_PPMI_PD.txt
 
 # Working Directory
-WD=/media/sn/Frieder_Data/Projects/Parcellation_Pipeline/sn_dti/data/ATPP_DEV
+WD=/media/sn/Frieder_Data/Projects/White_Matter_Alterations/SN/Results/HCP_Parcellation/PAULI_SN_PPMI_Parcellation
 
 # ROI directory which contains ROI files, e.g., Amyg_L.nii
 ROI_DIR=/media/sn/backup/Frieder_DBS/Masks/PAULI_SN
@@ -27,7 +27,7 @@ EXCLUSION_MASKS=
 STOP_MASKS=
 
 # Max number of clusters to parceltate the ROI
-MAX_CL_NUM=8
+MAX_CL_NUM=6
 
 #===============================================================================
 # specific variables for some steps
