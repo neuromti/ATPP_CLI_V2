@@ -32,6 +32,7 @@ defimg(defimg>0)=1;
 defnii.img = defimg;
 grouproipath = strcat(PWD, '/', 'group_',num2str(length(SUB)),'_',num2str(VOX_SIZE),'mm/');
 
+
 if ~exist(grouproipath,'dir');mkdir(grouproipath);end
 
 % Safe the group reference image
@@ -41,7 +42,7 @@ roiindex = find(sumimg >= GROUP_THRES_REAL*subnum);
 ROISIZE = length(roiindex);
 
 
-for CL_NUM=2:MAX_CL_NUM
+for CL_NUM=2:MAX_CL_NUM 
     disp(strcat(ROI, ' cluster number_',num2str(CL_NUM),' is running...'));
 	groupmatrix = zeros(ROISIZE,ROISIZE);
 

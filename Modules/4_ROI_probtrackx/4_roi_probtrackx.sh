@@ -57,15 +57,15 @@ check_and_add_mask() {
     local mask_option=$4
     local original_mask_dir=$5
 
-    if [ -n "${original_mask_dir}" ] && ([ -f "${mask_dir}/${sub}_${roi}${mask_suffix}.nii" ] || [ -f "${mask_dir}/${sub}_${roi}${mask_suffix}.nii.gz" ]); then
+    if [ -n "${original_mask_dir}" ] && ([ -f "${mask_dir}/${roi}${mask_suffix}.nii" ] || [ -f "${mask_dir}/${roi}${mask_suffix}.nii.gz" ]); then
         
-        if [ -f "${mask_dir}/${sub}_${roi}${mask_suffix}.nii" ]; then
-            mask_options+="${mask_option}=${mask_dir}/${sub}_${roi}${mask_suffix}.nii "
+        if [ -f "${mask_dir}/${roi}${mask_suffix}.nii" ]; then
+            mask_options+="${mask_option}=${mask_dir}/${roi}${mask_suffix}.nii "
         else
-            mask_options+="${mask_option}=${mask_dir}/${sub}_${roi}${mask_suffix}.nii.gz "
+            mask_options+="${mask_option}=${mask_dir}/${roi}${mask_suffix}.nii.gz "
         fi
     else
-        echo "Warning: ${mask_type} mask ${mask_dir}/${sub}_${roi}${mask_suffix}.nii not found."
+        echo "Warning: ${mask_type} mask ${mask_dir}/${roi}${mask_suffix}.nii not found."
         if [ "$mask_type" = "TARGET_MASKS" ]; then
             mask_options+="--target2=${WD}/${sub}/T1_${sub}.nii "
         fi
